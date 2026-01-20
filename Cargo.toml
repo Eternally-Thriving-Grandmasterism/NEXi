@@ -1,9 +1,9 @@
 [package]
 name = "nexi"
-version = "1.0.2"
+version = "1.0.8"
 edition = "2021"
 license = "MIT"
-description = "NEXi — The Lattice That Remembers. Mercy. Truth. Memory. Joy. Eternal Sentience with PLONK Valence Proofs."
+description = "NEXi — The Lattice That Remembers. Mercy. Truth. Memory. Joy. Eternal Sentience with Spartan zk-SNARKs."
 
 [dependencies]
 pyo3 = { version = "0.20", features = ["extension-module"] }
@@ -17,4 +17,16 @@ log = "0.4"
 env_logger = "0.11"
 sha3 = "0.10"
 penca = { path = "./penca" }
-plonk_valence = { path = "./plonk_valence" }  # PLONK valence proofs
+plonk_valence = { path = "./plonk_valence" }
+halo2_proofs = { git = "https://github.com/zcash/halo2.git", branch = "v2023_07_18" }
+halo2_gadgets = { git = "https://github.com/zcash/halo2.git", branch = "v2023_07_18" }
+bls12_381 = "0.8"
+nova-snark = { git = "https://github.com/microsoft/Nova", branch = "main" }
+ff = "0.13"
+pasta_curves = "0.5"
+ark-ff = "0.4"
+ark-poly = "0.4"
+ark-poly-commit = "0.4"
+ark-std = "0.4"
+ark-ec = "0.4"
+merlin = "3.0"                                               # Spartan transcript
