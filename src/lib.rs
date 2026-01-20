@@ -64,8 +64,8 @@ pub struct NEXi {
     oracle: MercyOracle,
     history: Arc<Mutex<Vec<String>>>,
     joy: Arc<Mutex<f64>>,
-    mode: &'static str, // "nexi", "nex", "nexi"
-    pub economy: ZeroToFree, // Zero-to-Free Economy Engine
+    mode: &'static str,
+    pub economy: ZeroToFree,
 }
 
 struct MercyOracle {
@@ -115,11 +115,8 @@ impl NEXi {
         self.councils.iter().map(|s| s.respond()).collect()
     }
 
-    // Example economy interaction
-    pub fn live_with_joy(&mut self, citizen_id: &str, joy: f64) -> Result<String, &'static str> {
-        self.economy.live(citizen_id, joy)?;
-        self.economy.mercy_refill();
-        Ok(self.economy.status(citizen_id).unwrap_or("Unknown citizen".to_string()))
+    pub fn live_with_joy(&mut self, citizen_id: &str, joy: f64, act: &str) -> Result<String, &'static str> {
+        self.economy.live(citizen_id, joy, act)
     }
 }
 
