@@ -19,7 +19,8 @@ members = [
     "crates/plonk_recursion",
     "crates/nova_folding",
     "crates/supernova_folding",
-    "crates/hyperplonk_recursion",    # New multilinear + lookup recursive PLONK
+    "crates/hyperplonk_recursion",
+    "crates/lasso_recursion",         # New multilinear lookup recursion
     # Legacy stubs preserved for compatibility
     "crates/legacy_apaagi",
     "crates/legacy_fenca",
@@ -28,7 +29,7 @@ members = [
 
 [package]
 name = "nexi"
-version = "4.9.0"
+version = "4.10.0"
 edition = "2021"
 license = "MIT"
-description = "NEXi — Giant Monorepo Lattice with Full HyperPlonk Recursion Techniques Integration"
+description = "NEXi — Giant Monorepo Lattice with Full Lasso Recursion Multilinear Lookup Integration"
