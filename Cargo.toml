@@ -11,7 +11,8 @@ members = [
     "crates/grok_arena_pinnacle",
     "crates/mercy_home_fortress",
     "crates/futarchy_oracle",
-    "crates/mercy_os_principles",     # Explicit member — kinkless ironing
+    "crates/mercy_os_principles",
+    "crates/poseidon_hash",           # New zk-friendly hashing
     # Legacy stubs preserved for compatibility
     "crates/legacy_apaagi",
     "crates/legacy_fenca",
@@ -20,7 +21,7 @@ members = [
 
 [package]
 name = "nexi"
-version = "4.1.0"
+version = "4.2.0"
 edition = "2021"
 license = "MIT"
-description = "NEXi — Giant Monorepo Lattice with Full MercyOS Principles Eternal Runtime Integration"
+description = "NEXi — Giant Monorepo Lattice with Full Poseidon Hash zk-Friendly Integration"
