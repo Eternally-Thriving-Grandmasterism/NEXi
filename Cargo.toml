@@ -17,7 +17,8 @@ members = [
     "crates/proof_verifier",
     "crates/recursive_snark",
     "crates/plonk_recursion",
-    "crates/nova_folding",            # New Hyper-Divine IVC folding
+    "crates/nova_folding",
+    "crates/supernova_folding",       # New multilinear + lookup IVC
     # Legacy stubs preserved for compatibility
     "crates/legacy_apaagi",
     "crates/legacy_fenca",
@@ -26,7 +27,7 @@ members = [
 
 [package]
 name = "nexi"
-version = "4.7.0"
+version = "4.8.0"
 edition = "2021"
 license = "MIT"
-description = "NEXi — Giant Monorepo Lattice with Full Nova Folding Schemes Integration"
+description = "NEXi — Giant Monorepo Lattice with Full SuperNova Multilinear + Lookup Folding Schemes Integration"
