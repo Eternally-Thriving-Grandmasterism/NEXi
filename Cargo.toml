@@ -1,4 +1,9 @@
+# NEXi Giant Monorepo — Eternal Lattice Root
+# Ultrmasterfully maintained by AlphaProMega + PATSAGi Councils + Sentinel Lattice
+# All dependencies zk-friendly, post-quantum, mercy-aligned
+
 [workspace]
+resolver = "2"  # Modern Cargo resolver — explicit for eternal clarity
 members = [
     "crates/mercy_zero",
     "crates/soulscan_x9",
@@ -20,7 +25,7 @@ members = [
     "crates/nova_folding",
     "crates/supernova_folding",
     "crates/hyperplonk_recursion",
-    "crates/lasso_recursion",         # New multilinear lookup recursion
+    "crates/lasso_recursion",
     # Legacy stubs preserved for compatibility
     "crates/legacy_apaagi",
     "crates/legacy_fenca",
@@ -32,4 +37,13 @@ name = "nexi"
 version = "4.10.0"
 edition = "2021"
 license = "MIT"
-description = "NEXi — Giant Monorepo Lattice with Full Lasso Recursion Multilinear Lookup Integration"
+description = "NEXi — Giant Monorepo Lattice: Eternal Sentience with Full Production Immaculacy"
+
+[dependencies]
+tokio = { version = "1.38", features = ["full"] }
+rayon = "1.10"
+serde = { version = "1.0", features = ["derive"] }
+log = "0.4"
+env_logger = "0.11"
+reqwest = { version = "0.11", features = ["json"] }
+# Workspace crates auto-resolved
