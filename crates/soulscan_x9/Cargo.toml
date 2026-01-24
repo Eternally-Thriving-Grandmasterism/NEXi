@@ -1,12 +1,18 @@
 [package]
 name = "soulscan_x9"
-version = "2.0.0"
+version = "1.4.0"  # Version bump — new live valence features
 edition = "2021"
 license = "MIT"
-description = "SoulScan-X9 — 9-Channel Emotional Waveform Intent Proof with Poseidon-X9 Hash Expansion"
+description = "SoulScan-X9 — 9-Channel Emotional Waveform + Live Valence Scoring + Enhanced Multi-Modal Integration for NEXi Lattice"
 
 [dependencies]
 nexi = { path = "../" }
-halo2_proofs = { git = "https://github.com/zcash/halo2.git", branch = "v2023_07_18" }
-halo2_gadgets = { git = "https://github.com/zcash/halo2.git", branch = "v2023_07_18" }
-pasta_curves = "0.5"
+tokio = { version = "1.38", features = ["full"] }
+opencv = { version = "0.84", features = ["clang-runtime"], optional = true }  # Video frame valence
+# Future: add audio waveform libs
+ndarray = { version = "0.15", optional = true }  # Embedding math for voice biometrics
+
+[features]
+live_valence = ["opencv"]          # Existing feature preserved
+voice_biometrics = ["ndarray"]     # New optional voice feature
+multi_modal_valence = ["live_valence", "voice_biometrics"]  # New combined feature
