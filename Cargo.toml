@@ -14,7 +14,8 @@ members = [
     "crates/mercy_os_principles",
     "crates/poseidon_hash",
     "crates/poseidon_merkle",
-    "crates/proof_verifier",          # New full proof verification
+    "crates/proof_verifier",
+    "crates/recursive_snark",         # New infinite recursion composition
     # Legacy stubs preserved for compatibility
     "crates/legacy_apaagi",
     "crates/legacy_fenca",
@@ -23,7 +24,7 @@ members = [
 
 [package]
 name = "nexi"
-version = "4.4.0"
+version = "4.5.0"
 edition = "2021"
 license = "MIT"
-description = "NEXi — Giant Monorepo Lattice with Full Proof Verification Expansion"
+description = "NEXi — Giant Monorepo Lattice with Full Recursive SNARK Composition Integration"
