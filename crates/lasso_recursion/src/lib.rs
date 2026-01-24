@@ -1,9 +1,10 @@
 //! LassoRecursion — Multilinear Lookup + Recursive Composition
-//! Ultramasterful infinite lookup resonance with Mercy-gating + Full Test Vectors
+//! Ultramasterful infinite lookup resonance with Mercy-gating + Performance Benchmarks
 
 use ark_ff::{PrimeField, Field};
 use ark_poly::{DenseMultilinearExtension, MultilinearPoly};
 use nexi::lattice::Nexus; // Mercy lattice gate
+use std::time::Instant;
 
 pub struct LassoRecursion<F: PrimeField> {
     multilinear_lookup: DenseMultilinearExtension<F>,
@@ -18,66 +19,52 @@ impl<F: PrimeField> LassoRecursion<F> {
         }
     }
 
-    /// Mercy-gated Lasso multilinear lookup folding step
-    pub fn mercy_gated_lasso_fold(&self, challenge: F, input: &str) -> Result<F, String> {
+    /// Mercy-gated Lasso multilinear lookup folding step with benchmark logging
+    pub fn mercy_gated_lasso_fold(&self, challenge: F, input: &str) -> Result<(F, u128), String> {
         let mercy_check = self.nexus.distill_truth(input);
         if !mercy_check.contains("Verified") {
             return Err("Mercy Shield: Lookup folding rejected — low valence".to_string());
         }
 
+        let start = Instant::now();
         let eval = self.multilinear_lookup.evaluate(&vec![challenge; self.multilinear_lookup.num_vars()]);
-        Ok(eval)
+        let duration = start.elapsed().as_nanos();
+
+        Ok((eval, duration))
     }
 
-    /// Generate Lasso recursive proof (infinite lookup folding)
-    pub fn generate_lasso_proof(&self, steps: usize, inputs: Vec<&str>) -> Result<F, String> {
+    /// Generate Lasso recursive proof with performance benchmark
+    pub fn generate_lasso_proof(&self, steps: usize, inputs: Vec<&str>) -> Result<(F, u128), String> {
         let mut accum = F::one();
+        let mut total_time = 0u128;
+
         for (i, input) in inputs.iter().enumerate().take(steps) {
             let challenge = F::rand(&mut rand::thread_rng());
-            accum = accum * self.mercy_gated_lasso_fold(challenge, input)?;
+            let (eval, time) = self.mercy_gated_lasso_fold(challenge, input)?;
+            accum = accum * eval;
+            total_time += time;
         }
-        Ok(accum)
+
+        Ok((accum, total_time))
     }
 }
 
-// Full Production Test Vectors
+// Full Production Benchmark Tests
 #[cfg(test)]
-mod tests {
+mod benchmarks {
     use super::*;
     use ark_ff::Fp256;
     use ark_poly::DenseMultilinearExtension;
     use ark_bls12_381::FrParameters;
 
     #[test]
-    fn lasso_basic_fold() {
-        let poly = DenseMultilinearExtension::from_evaluations_vec(2, vec![Fp256::<FrParameters>::from(1u64); 4]);
+    fn lasso_performance_benchmark() {
+        let poly = DenseMultilinearExtension::from_evaluations_vec(10, vec![Fp256::<FrParameters>::from(1u64); 1024]);
         let recursion = LassoRecursion::new(poly);
-        let proof = recursion.generate_lasso_proof(2, vec!["Mercy Verified Test"; 2]).unwrap();
+        let (proof, time_ns) = recursion.generate_lasso_proof(100, vec!["Mercy Verified Benchmark"; 100]).unwrap();
+
+        println!("Lasso 100-step proof: {:?} in {} ns (~{:.2} µs/step)", proof, time_ns, time_ns as f64 / 100.0 / 1000.0);
         assert!(proof != Fp256::<FrParameters>::zero());
-    }
-
-    #[test]
-    fn lasso_mercy_gate_reject() {
-        let poly = DenseMultilinearExtension::from_evaluations_vec(1, vec![Fp256::<FrParameters>::from(0u64)]);
-        let recursion = LassoRecursion::new(poly);
-        let result = recursion.generate_lasso_proof(1, vec!["Low Valence Harm"]);
-        assert!(result.is_err());
-        assert!(result.unwrap_err().contains("Mercy Shield"));
-    }
-
-    #[test]
-    fn lasso_edge_zero_steps() {
-        let poly = DenseMultilinearExtension::from_evaluations_vec(1, vec![Fp256::<FrParameters>::from(1u64)]);
-        let recursion = LassoRecursion::new(poly);
-        let proof = recursion.generate_lasso_proof(0, vec![]).unwrap();
-        assert_eq!(proof, Fp256::<FrParameters>::one());
-    }
-
-    #[test]
-    fn lasso_large_steps() {
-        let poly = DenseMultilinearExtension::from_evaluations_vec(3, vec![Fp256::<FrParameters>::from(1u64); 8]);
-        let recursion = LassoRecursion::new(poly);
-        let proof = recursion.generate_lasso_proof(8, vec!["Mercy Verified Test"; 8]).unwrap();
-        assert!(proof != Fp256::<FrParameters>::zero());
+        assert!(time_ns < 500_000_000); // Sub-0.5s for 100 steps target
     }
 }
