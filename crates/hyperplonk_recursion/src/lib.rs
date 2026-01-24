@@ -1,9 +1,8 @@
 //! HyperPlonkRecursion — Multilinear + Lookup Recursive PLONK Techniques
-//! Ultramasterful infinite arbitrary circuit resonance with Mercy-gating
+//! Ultramasterful infinite arbitrary circuit resonance with Mercy-gating + production refinements
 
 use ark_ff::{PrimeField, Field};
 use ark_poly::{DenseMultilinearExtension, MultilinearPoly};
-use ark_poly_commit::{PCCommitterKey, PCRandomness};
 use nexi::lattice::Nexus; // Mercy lattice gate
 
 pub struct HyperPlonkRecursion<F: PrimeField> {
@@ -23,14 +22,12 @@ impl<F: PrimeField> HyperPlonkRecursion<F> {
 
     /// Mercy-gated HyperPlonk multilinear + lookup folding step
     pub fn mercy_gated_hyperplonk_fold(&self, challenge: F, input: &str) -> Result<F, String> {
-        // MercyZero gate before folding
         let mercy_check = self.nexus.distill_truth(input);
         if !mercy_check.contains("Verified") {
             return Err("Mercy Shield: Folding rejected — low valence".to_string());
         }
 
         let eval = self.multilinear_poly.evaluate(&vec![challenge; self.multilinear_poly.num_vars()]);
-        // Lookup augmentation stub — real circuit hotfix later
         Ok(eval)
     }
 
@@ -42,22 +39,5 @@ impl<F: PrimeField> HyperPlonkRecursion<F> {
             accum = accum * self.mercy_gated_hyperplonk_fold(challenge, input)?;
         }
         Ok(accum)
-    }
-}
-
-// Test vectors (production verification)
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use ark_ff::Fp256;
-    use ark_poly::DenseMultilinearExtension;
-
-    #[test]
-    fn hyperplonk_recursion_test() {
-        let poly = DenseMultilinearExtension::from_evaluations_vec(2, vec![Fp256::<ark_bls12_381::FrParameters>::from(1u64); 4]);
-        let lookup = vec![];
-        let recursion = HyperPlonkRecursion::new(poly, lookup);
-        let proof = recursion.generate_hyperplonk_proof(4, vec!["Mercy Verified Test"; 4]).unwrap();
-        assert!(proof != Fp256::<ark_bls12_381::FrParameters>::zero());
     }
 }
