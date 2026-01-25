@@ -1,13 +1,13 @@
 [package]
 name = "mercy_biojet"
-version = "1.2.0"
+version = "1.3.0"
 edition = "2021"
 license = "MIT"
-description = "MercyBioJet — Algae-Derived Zero-Emission SAF Core with Full Async Production + Performance Benchmarks"
+description = "MercyBioJet — Algae-Derived Zero-Emission SAF Core with Full Halo2 ZK-Proof Integration"
 
 [dependencies]
 nexi = { path = "../" }
 tokio = { version = "1.38", features = ["full", "rt-multi-thread", "macros"] }
-
-[dev-dependencies]
-criterion = { version = "0.5", features = ["async_tokio"] }  # Production async benchmarks
+halo2_proofs = { git = "https://github.com/zcash/halo2.git", branch = "v2023_07_18" }
+halo2_gadgets = { git = "https://github.com/zcash/halo2.git", branch = "v2023_07_18" }
+pasta_curves = "0.5"
