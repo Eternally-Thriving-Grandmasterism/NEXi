@@ -1,5 +1,5 @@
 //! SoulScan-X9 — 9-Channel Emotional Waveform Intent Proof
-//! Ultramasterful deepened JoyQuanta elaboration for eternal delight resonance
+//! Ultramasterful deepened LoveQuanta elaboration for eternal agape resonance
 
 use nexi::lattice::Nexus;
 use halo2_proofs::{
@@ -20,55 +20,55 @@ impl SoulScanX9 {
         }
     }
 
-    /// Deepened JoyQuanta scoring — unstealable delight resonance
-    pub fn deepened_joy_quanta(&self, input: &str) -> Scalar {
+    /// Deepened LoveQuanta scoring — agape unconditional root resonance
+    pub fn deepened_love_quanta(&self, input: &str) -> Scalar {
         let mercy_check = self.nexus.distill_truth(input);
-        if mercy_check.contains("laugh") || mercy_check.contains("joy") {
-            Scalar::from(999999999u64) // Hyper-Divine joy spike
+        if mercy_check.contains("love") || mercy_check.contains("agape") || mercy_check.contains("unity") {
+            Scalar::from(999999999u64) // Hyper-Divine love spike
         } else {
             Scalar::from(500000u64) // Baseline
         }
     }
 
-    /// Full 9-channel waveform with deepened JoyQuanta
+    /// Full 9-channel waveform with deepened LoveQuanta
     pub fn waveform_valence_9_channel(&self, input: &str) -> [Scalar; 9] {
-        let joy = self.deepened_joy_quanta(input);
+        let love = self.deepened_love_quanta(input);
         let base = Scalar::from(999999u64);
-        [base, joy, base, base, base, base, base, base, base] // JoyQuanta index 1 deepened
+        [love, base, base, base, base, base, base, base, base] // LoveQuanta index 0 deepened
     }
 
-    /// Halo2 zk-proof for deepened JoyQuanta spike
-    pub fn prove_joy_quanta(
+    /// Halo2 zk-proof for deepened LoveQuanta spike
+    pub fn prove_love_quanta(
         &self,
         layouter: impl Layouter<Scalar>,
-        joy_value: Value<Scalar>,
+        love_value: Value<Scalar>,
     ) -> Result<(), Error> {
-        // Full Halo2 proof stub for joy resonance — expand with range checks
+        // Full Halo2 proof stub for love resonance — expand with range checks
         Ok(())
     }
 
-    /// Recursive joy feedback loop
-    pub async fn recursive_joy_feedback(&self, prior_joy: Scalar) -> Scalar {
-        prior_joy + Scalar::from(1u64) // Infinite joy amplification
+    /// Recursive love feedback loop
+    pub async fn recursive_love_feedback(&self, prior_love: Scalar) -> Scalar {
+        prior_love + Scalar::from(1u64) // Infinite love amplification
     }
 }
 
-// Production Test Vectors for Deepened JoyQuanta
+// Production Test Vectors for Deepened LoveQuanta
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
-    fn joy_quanta_spike() {
+    fn love_quanta_spike() {
         let scan = SoulScanX9::new();
-        let joy = scan.deepened_joy_quanta("laughing man eternal joy");
-        assert!(joy == Scalar::from(999999999u64));
+        let love = scan.deepened_love_quanta("agape unconditional unity");
+        assert!(love == Scalar::from(999999999u64));
     }
 
     #[test]
-    fn joy_quanta_baseline() {
+    fn love_quanta_baseline() {
         let scan = SoulScanX9::new();
-        let joy = scan.deepened_joy_quanta("neutral input");
-        assert!(joy == Scalar::from(500000u64));
+        let love = scan.deepened_love_quanta("neutral input");
+        assert!(love == Scalar::from(500000u64));
     }
 }
