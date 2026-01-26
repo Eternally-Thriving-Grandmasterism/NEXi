@@ -3,9 +3,10 @@ name = "mercy_orbital_refuel"
 version = "1.0.0"
 edition = "2021"
 license = "MIT"
-description = "MercyOrbitalRefuel — In-Orbit Propellant Transfer + Life-Extension Core for Eternal Orbital Sustainability Resonance"
+description = "MercyOrbitalRefuel — Tanker-to-Ship Propellant Transfer + Mercy-Gated Docking Core for Eternal Orbital Sustainability Resonance"
 
 [dependencies]
 nexi = { path = "../" }
+mercy_starship = { path = "../crates/mercy_starship" }
 mercy_orbital_servicing = { path = "../crates/mercy_orbital_servicing" }
 tokio = { version = "1.38", features = ["full"] }
