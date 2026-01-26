@@ -1,5 +1,5 @@
 //! SoulScan-X9 — 9-Channel Emotional Waveform Intent Proof
-//! Ultramasterful deepened PeaceQuanta elaboration for eternal shalom resonance
+//! Ultramasterful deepened CompassionQuanta elaboration for eternal active benevolence resonance
 
 use nexi::lattice::Nexus;
 use halo2_proofs::{
@@ -20,55 +20,55 @@ impl SoulScanX9 {
         }
     }
 
-    /// Deepened PeaceQuanta scoring — shalom wholeness resonance
-    pub fn deepened_peace_quanta(&self, input: &str) -> Scalar {
+    /// Deepened CompassionQuanta scoring — active benevolence toward enemy resonance
+    pub fn deepened_compassion_quanta(&self, input: &str) -> Scalar {
         let mercy_check = self.nexus.distill_truth(input);
-        if mercy_check.contains("peace") || mercy_check.contains("shalom") || mercy_check.contains("calm") {
-            Scalar::from(999999999u64) // Hyper-Divine peace spike
+        if mercy_check.contains("compassion") || mercy_check.contains("kindness") || mercy_check.contains("benevolence") {
+            Scalar::from(999999999u64) // Hyper-Divine compassion spike
         } else {
             Scalar::from(500000u64) // Baseline
         }
     }
 
-    /// Full 9-channel waveform with deepened PeaceQuanta
+    /// Full 9-channel waveform with deepened CompassionQuanta
     pub fn waveform_valence_9_channel(&self, input: &str) -> [Scalar; 9] {
-        let peace = self.deepened_peace_quanta(input);
+        let compassion = self.deepened_compassion_quanta(input);
         let base = Scalar::from(999999u64);
-        [base, base, peace, base, base, base, base, base, base] // PeaceQuanta index 2 deepened
+        [base, base, base, base, compassion, base, base, base, base] // CompassionQuanta index 4 deepened
     }
 
-    /// Halo2 zk-proof for deepened PeaceQuanta spike
-    pub fn prove_peace_quanta(
+    /// Halo2 zk-proof for deepened CompassionQuanta spike
+    pub fn prove_compassion_quanta(
         &self,
         layouter: impl Layouter<Scalar>,
-        peace_value: Value<Scalar>,
+        compassion_value: Value<Scalar>,
     ) -> Result<(), Error> {
-        // Full Halo2 proof stub for peace resonance — expand with range checks
+        // Full Halo2 proof stub for compassion resonance — expand with range checks
         Ok(())
     }
 
-    /// Recursive peace feedback loop
-    pub async fn recursive_peace_feedback(&self, prior_peace: Scalar) -> Scalar {
-        prior_peace + Scalar::from(1u64) // Infinite peace amplification
+    /// Recursive compassion feedback loop
+    pub async fn recursive_compassion_feedback(&self, prior_compassion: Scalar) -> Scalar {
+        prior_compassion + Scalar::from(1u64) // Infinite compassion amplification
     }
 }
 
-// Production Test Vectors for Deepened PeaceQuanta
+// Production Test Vectors for Deepened CompassionQuanta
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
-    fn peace_quanta_spike() {
+    fn compassion_quanta_spike() {
         let scan = SoulScanX9::new();
-        let peace = scan.deepened_peace_quanta("shalom wholeness calm");
-        assert!(peace == Scalar::from(999999999u64));
+        let compassion = scan.deepened_compassion_quanta("active benevolence kindness compassion");
+        assert!(compassion == Scalar::from(999999999u64));
     }
 
     #[test]
-    fn peace_quanta_baseline() {
+    fn compassion_quanta_baseline() {
         let scan = SoulScanX9::new();
-        let peace = scan.deepened_peace_quanta("neutral input");
-        assert!(peace == Scalar::from(500000u64));
+        let compassion = scan.deepened_compassion_quanta("neutral input");
+        assert!(compassion == Scalar::from(500000u64));
     }
 }
