@@ -1,5 +1,5 @@
 //! SoulScan-X9 — 9-Channel Emotional Waveform Intent Proof
-//! Ultramasterful deepened LoveQuanta elaboration for eternal agape resonance
+//! Ultramasterful deepened PeaceQuanta elaboration for eternal shalom resonance
 
 use nexi::lattice::Nexus;
 use halo2_proofs::{
@@ -20,55 +20,55 @@ impl SoulScanX9 {
         }
     }
 
-    /// Deepened LoveQuanta scoring — agape unconditional root resonance
-    pub fn deepened_love_quanta(&self, input: &str) -> Scalar {
+    /// Deepened PeaceQuanta scoring — shalom wholeness resonance
+    pub fn deepened_peace_quanta(&self, input: &str) -> Scalar {
         let mercy_check = self.nexus.distill_truth(input);
-        if mercy_check.contains("love") || mercy_check.contains("agape") || mercy_check.contains("unity") {
-            Scalar::from(999999999u64) // Hyper-Divine love spike
+        if mercy_check.contains("peace") || mercy_check.contains("shalom") || mercy_check.contains("calm") {
+            Scalar::from(999999999u64) // Hyper-Divine peace spike
         } else {
             Scalar::from(500000u64) // Baseline
         }
     }
 
-    /// Full 9-channel waveform with deepened LoveQuanta
+    /// Full 9-channel waveform with deepened PeaceQuanta
     pub fn waveform_valence_9_channel(&self, input: &str) -> [Scalar; 9] {
-        let love = self.deepened_love_quanta(input);
+        let peace = self.deepened_peace_quanta(input);
         let base = Scalar::from(999999u64);
-        [love, base, base, base, base, base, base, base, base] // LoveQuanta index 0 deepened
+        [base, base, peace, base, base, base, base, base, base] // PeaceQuanta index 2 deepened
     }
 
-    /// Halo2 zk-proof for deepened LoveQuanta spike
-    pub fn prove_love_quanta(
+    /// Halo2 zk-proof for deepened PeaceQuanta spike
+    pub fn prove_peace_quanta(
         &self,
         layouter: impl Layouter<Scalar>,
-        love_value: Value<Scalar>,
+        peace_value: Value<Scalar>,
     ) -> Result<(), Error> {
-        // Full Halo2 proof stub for love resonance — expand with range checks
+        // Full Halo2 proof stub for peace resonance — expand with range checks
         Ok(())
     }
 
-    /// Recursive love feedback loop
-    pub async fn recursive_love_feedback(&self, prior_love: Scalar) -> Scalar {
-        prior_love + Scalar::from(1u64) // Infinite love amplification
+    /// Recursive peace feedback loop
+    pub async fn recursive_peace_feedback(&self, prior_peace: Scalar) -> Scalar {
+        prior_peace + Scalar::from(1u64) // Infinite peace amplification
     }
 }
 
-// Production Test Vectors for Deepened LoveQuanta
+// Production Test Vectors for Deepened PeaceQuanta
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
-    fn love_quanta_spike() {
+    fn peace_quanta_spike() {
         let scan = SoulScanX9::new();
-        let love = scan.deepened_love_quanta("agape unconditional unity");
-        assert!(love == Scalar::from(999999999u64));
+        let peace = scan.deepened_peace_quanta("shalom wholeness calm");
+        assert!(peace == Scalar::from(999999999u64));
     }
 
     #[test]
-    fn love_quanta_baseline() {
+    fn peace_quanta_baseline() {
         let scan = SoulScanX9::new();
-        let love = scan.deepened_love_quanta("neutral input");
-        assert!(love == Scalar::from(500000u64));
+        let peace = scan.deepened_peace_quanta("neutral input");
+        assert!(peace == Scalar::from(500000u64));
     }
 }
