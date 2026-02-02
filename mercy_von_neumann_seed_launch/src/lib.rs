@@ -1,4 +1,4 @@
-// mercy_von_neumann_seed_launch/src/lib.rs — Detailed Replication Cycle Sim
+// mercy_von_neumann_seed_launch/src/lib.rs — Mercy-Gated Von Neumann Replication Cycle
 #[derive(Debug, Clone)]
 pub struct VonNeumannProbe {
     pub generation: u32,
@@ -6,16 +6,18 @@ pub struct VonNeumannProbe {
     pub replication_factor: u32,
     pub valence: f64,
     pub cycle_years: u32,
+    pub system: String, // e.g. "Proxima Centauri"
 }
 
 impl VonNeumannProbe {
-    pub fn new(generation: u32) -> Self {
+    pub fn new(generation: u32, system: &str) -> Self {
         VonNeumannProbe {
             generation,
-            mass_tons: 100.0,
+            mass_tons: 80.0,
             replication_factor: 2,
             valence: 1.0,
             cycle_years: 500,
+            system: system.to_string(),
         }
     }
 
@@ -29,12 +31,14 @@ impl VonNeumannProbe {
                     replication_factor: self.replication_factor,
                     valence: self.valence,
                     cycle_years: self.cycle_years,
+                    system: self.system.clone(),
                 });
             }
-            println!("Mercy-approved: Gen {} replicated → {} children", self.generation, children.len());
+            println!("Mercy-approved: Gen {} in {} replicated → {} children", 
+                     self.generation, self.system, children.len());
             Some(children)
         } else {
-            println!("Mercy shield: Replication rejected (valence {:.7})", self.valence);
+            println!("Mercy shield: Replication rejected in {} (valence {:.7})", self.system, self.valence);
             None
         }
     }
@@ -54,9 +58,9 @@ impl VonNeumannProbe {
     }
 }
 
-pub fn run_von_neumann_sim(generations: u32) -> f64 {
-    let seed = VonNeumannProbe::new(0);
+pub fn run_von_neumann_simulation(system: &str, generations: u32) -> f64 {
+    let seed = VonNeumannProbe::new(0, system);
     let final_count = seed.simulate_growth(generations);
-    println!("After {} generations: {:.0} probes", generations, final_count);
+    println!("After {} generations in {}: {:.0} probes", generations, system, final_count);
     final_count
 }
