@@ -1,0 +1,11 @@
+.git
+.gitignore
+node_modules
+target
+build
+dist
+*.log
+secrets/
+*.private.*
+Dockerfile*
+!Dockerfile  # keep Dockerfiles themselves
